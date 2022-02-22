@@ -83,7 +83,7 @@ export const UserContainer = styled.article`
   display: grid;
   box-shadow: ${({ theme: { c } }) => `0 20px 25px -5px rgba(${c.shadow}, 0.1),
     0 8px 10px -6px rgba(${c.shadow}, 0.1)`};
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 2fr 2fr;
   gap: 2.4rem;
   background: ${({ theme: { c } }) => c.bg_1};
   padding: 3.6rem 2.4rem;
@@ -482,4 +482,48 @@ export const NotFoundText = styled.p`
       }
     }
   }
+`;
+
+
+export const pagination = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none;
+  margin-top: 2.5em;
+`;
+
+
+export const StyledPaginateContainer = styled.div`
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none;
+  margin-top: 2.5em;
+}
+
+.pagination__page,
+.pagination__link,
+.page-break {
+  display: inline-block;
+  padding: 0.6em 0.8em;
+  cursor: pointer;
+}
+
+.pagination__page:hover,
+.pagination__page:focus,
+.pagination__link:hover,
+.pagination__link:focus,
+.page-break:hover .page-break:focus {
+  color: ${({ theme: { c } }) => c.txt_1};
+}
+
+.pagination__link--active {
+  background: #3f1c69;
+}
+
+.pagination__link--disabled {
+  color: #848383;
+}
 `;

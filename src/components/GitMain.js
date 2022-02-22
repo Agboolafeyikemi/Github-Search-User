@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import ReactPaginate from "react-paginate";
 
 // STYLES
-import { Main } from "@Styles/main";
+import { Main, StyledPaginateContainer } from "@Styles/main";
 
 // COMPONENTS
 import GitSearch from "@Components/GitSearch";
@@ -49,13 +49,14 @@ const GitMain = () => {
 
     // Get data from API once component renders to the DOM
     fetch(
-      `https://api.github.com/search/users?q=${userInput}&page=${currentPage}&per_page=20`
+      `https://api.github.com/search/users?q=${userInput}&page=${currentPage}&per_page=6`
     )
       .then((response) => {
         if (response.ok) return response.json();
         throw new Error("Something went wrong while processing this request");
       })
       .then((data) => {
+        console.log(data, 'fextedData')
         // Update userSearchResults state with user search results
         setUserSearchResults(data);
         // Calculate total pages of results and set pageCount
@@ -104,7 +105,7 @@ const GitMain = () => {
       setIsLoading(true);
       // Get data from API once component renders to the DOM
       fetch(
-        `https://api.github.com/search/users?q=${userInput}&page=${currentPage}&per_page=20`
+        `https://api.github.com/search/users?q=${userInput}&page=${currentPage}&per_page=6`
       )
         .then((response) => {
           if (response.ok) return response.json();
@@ -132,7 +133,7 @@ const GitMain = () => {
         onSubmit={handleSubmit}
       />
       {!userSearchResults && isLoading && <Loading />}
-      {/* {userSearchResults && <GitUserBoard userProfile={userData.profile} />} */}
+      {isQuery && <GitUserBoard users={userSearchResults.items} />}
       {/* {isQuery && (
         <SearchResults
           searchResults={userSearchResults}
@@ -142,6 +143,7 @@ const GitMain = () => {
       {error && <UserNotFound error={error} />}
       {/* Only render ReactPaginate if data is loaded and pageCount is more than 1 */}
       {isLoaded && pageCount > 1 && (
+        <StyledPaginateContainer>
         <ReactPaginate
           previousLabel={"Previous"}
           nextLabel={"Next"}
@@ -158,6 +160,7 @@ const GitMain = () => {
           disabledClassName={"pagination__link--disabled"}
           activeClassName={"pagination__link--active"}
         />
+        </StyledPaginateContainer>
       )}
     </Main>
   );

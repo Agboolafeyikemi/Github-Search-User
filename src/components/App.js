@@ -28,7 +28,7 @@ const App = () => {
         <title>Github User Search - Leonardo Teixeira</title>
       </Helmet>
       <ThemeContext.Provider value={[colorMode, setColorMode]}>
-        <ThemeProvider theme={colorMode ? darkMode : lightMode}>
+        <ThemeProvider theme={colorMode ? lightMode : darkMode}>
           <GlobalStyles />
           <Container>
             <GitHeader />
