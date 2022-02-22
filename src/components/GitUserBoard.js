@@ -24,6 +24,9 @@ import {
   UserLinkList,
   UserFooterItem,
   UserFooterLink,
+  Profile,
+  ProfileImage,
+  ProfileName
 } from "@Styles/main";
 import { padding } from "polished";
 
@@ -32,24 +35,6 @@ const PropsBox = styled.div(props => ({
   background: props.background,
   height: '50px',
   width: '50px'
-}));
-const Profile = styled.div(props => ({
-  textAlign:"center",
-  maxWidth:'200px',
-  boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
-  padding:'20px',
-}));
-const ProfileImage = styled.div(props => ({
-  textAlign:"center",
-  width:'150px',
-  height:'150px',
-  objectFit: 'cover',
-  margin: '0 auto 20px auto',
-  display: 'block',
-}));
-const ProfileName = styled.div(props => ({
- fontSize: '1.2em',
- fontWeight: 'bold',
 }));
 
 const GitUserBoard = ({ users }) => {

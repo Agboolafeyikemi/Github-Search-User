@@ -8,7 +8,6 @@ import { Main, StyledPaginateContainer } from "@Styles/main";
 import GitSearch from "@Components/GitSearch";
 import Loading from "@Components/Loading";
 import GitUserBoard from "@Components/GitUserBoard";
-// import GitUserRepos from "@Components/GitUserRepos";
 import UserNotFound from "@Components/UserNotFound";
 
 // UTILS
@@ -134,12 +133,7 @@ const GitMain = () => {
       />
       {!userSearchResults && isLoading && <Loading />}
       {isQuery && <GitUserBoard users={userSearchResults.items} />}
-      {/* {isQuery && (
-        <SearchResults
-          searchResults={userSearchResults}
-          isLoading={isLoading}
-        />
-      )} */}
+    
       {error && <UserNotFound error={error} />}
       {/* Only render ReactPaginate if data is loaded and pageCount is more than 1 */}
       {isLoaded && pageCount > 1 && (

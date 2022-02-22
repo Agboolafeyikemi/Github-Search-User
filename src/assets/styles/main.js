@@ -484,16 +484,6 @@ export const NotFoundText = styled.p`
   }
 `;
 
-
-export const pagination = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  list-style: none;
-  margin-top: 2.5em;
-`;
-
-
 export const StyledPaginateContainer = styled.div`
 .pagination {
   display: flex;
@@ -501,6 +491,7 @@ export const StyledPaginateContainer = styled.div`
   justify-content: center;
   list-style: none;
   margin-top: 2.5em;
+  color: ${({ theme: { c } }) => c.txt_1};
 }
 
 .pagination__page,
@@ -516,7 +507,7 @@ export const StyledPaginateContainer = styled.div`
 .pagination__link:hover,
 .pagination__link:focus,
 .page-break:hover .page-break:focus {
-  color: ${({ theme: { c } }) => c.txt_1};
+  color: #FFFFFF;
 }
 
 .pagination__link--active {
@@ -527,3 +518,24 @@ export const StyledPaginateContainer = styled.div`
   color: #848383;
 }
 `;
+
+
+export const Profile = styled.div`
+  text-align: center;
+  max-width:200px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding:20px;
+};
+`
+export const ProfileImage = styled.div`
+  text-align: center;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  margin: 0 auto 20px auto;
+  display: block;
+}`
+export const ProfileName = styled.div`
+ font-size: 1.2em;
+ font-weight: bold;
+}`

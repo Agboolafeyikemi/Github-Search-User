@@ -6,7 +6,7 @@ import { LoadingText, LoadingDot } from '@Styles/main';
 const Loading = () => {
   return (
     <LoadingText>
-      Loading
+      Loading!!!!!!!!!!!!
       <LoadingDot>.</LoadingDot>
       <LoadingDot>.</LoadingDot>
       <LoadingDot>.</LoadingDot>
