@@ -1,11 +1,20 @@
-import React, { useState, useEffect, useRef } from "react";
-import Header from "./components/Header";
-import SearchForm from "./components/SearchForm";
-import SearchResults from "./components/SearchResults";
+import React, { useState, useRef, useEffect } from "react";
 import ReactPaginate from "react-paginate";
-import "./App.css";
 
-function App() {
+// STYLES
+import { Main } from "@Styles/main";
+
+// COMPONENTS
+import GitSearch from "@Components/GitSearch";
+import Loading from "@Components/Loading";
+import GitUserBoard from "@Components/GitUserBoard";
+// import GitUserRepos from "@Components/GitUserRepos";
+import UserNotFound from "@Components/UserNotFound";
+
+// UTILS
+import { getUserData } from "@Utils/api";
+
+const GitMain = () => {
   // Set state variable (userInput) to store user search form input value
   const [userInput, setUserInput] = useState("");
 
@@ -114,23 +123,22 @@ function App() {
       currentPageRef.current = currentPage;
     }
   }, [currentPage, userInput]);
-
   return (
-    <div className="container">
-      <Header />
-      <SearchForm
+    <Main>
+      <GitSearch
         onChange={handleChange}
         value={userInput}
         onSubmit={handleSubmit}
       />
-      {isQuery && (
+      {!userSearchResults && isLoading && <Loading />}
+      {/* {userSearchResults && <GitUserBoard userProfile={userData.profile} />} */}
+      {/* {isQuery && (
         <SearchResults
           searchResults={userSearchResults}
           isLoading={isLoading}
         />
-      )}
-      {error && <p>{error}</p>}
-
+      )} */}
+      {error && <UserNotFound error={error} />}
       {/* Only render ReactPaginate if data is loaded and pageCount is more than 1 */}
       {isLoaded && pageCount > 1 && (
         <ReactPaginate
@@ -150,8 +158,8 @@ function App() {
           activeClassName={"pagination__link--active"}
         />
       )}
-    </div>
+    </Main>
   );
-}
+};
 
-export default App;
+export default GitMain;
