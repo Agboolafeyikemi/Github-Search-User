@@ -123,6 +123,7 @@ const GitMain = () => {
       currentPageRef.current = currentPage;
     }
   }, [currentPage, userInput]);
+  console.log("userSearchResults \n\n:>> ", userSearchResults);
   return (
     <Main>
       <GitSearch

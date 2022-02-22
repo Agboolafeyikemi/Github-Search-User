@@ -30,7 +30,7 @@ const GitSearch = ({ onChange, value, onSubmit }) => {
             <SearchField
               placeholder="Github username"
               value={value}
-              onChange={onChange}
+              onChange={(e) => onChange(e)}
               required
             />
           </Wrapper>
