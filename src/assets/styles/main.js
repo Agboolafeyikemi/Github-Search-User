@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { darken } from 'polished';
+import styled from "styled-components";
+import { darken } from "polished";
 
 export const Main = styled.main``;
 
@@ -7,7 +7,7 @@ export const SearchContainer = styled.header`
   background: ${({ theme: { c } }) => c.bg_1};
   border-radius: 1.5rem;
   ${({ showError, theme: { c } }) =>
-    showError ? `outline: 2px solid ${c.txt_6}` : 'outline: none'};
+    showError ? `outline: 2px solid ${c.txt_6}` : "outline: none"};
   padding: 1rem;
 `;
 
@@ -24,7 +24,7 @@ export const SearchForm = styled.form`
   }
 `;
 
-export const SearchField = styled.input.attrs({ type: 'text' })`
+export const SearchField = styled.input.attrs({ type: "text" })`
   color: ${({ theme: { c } }) => c.txt_1};
   background: transparent;
   min-width: 0;
@@ -77,6 +77,9 @@ export const Wrapper = styled.div`
     color: ${({ theme: { c } }) => c.txt_5};
   }
 `;
+export const OnHover = styled.article`
+  display: none;
+`;
 
 export const UserContainer = styled.article`
   margin-top: 2.4rem;
@@ -88,10 +91,14 @@ export const UserContainer = styled.article`
   background: ${({ theme: { c } }) => c.bg_1};
   padding: 3.6rem 2.4rem;
   border-radius: 1.5rem;
+
   @media screen and (min-width: 768px) {
     padding: 3.6rem;
     gap: 3.2rem;
     margin-bottom: 4.2rem;
+  }
+  @media screen and (max-width: 600px) {
+    display: block;
   }
 `;
 
@@ -145,7 +152,10 @@ export const UserWrapper = styled.div`
   }
 `;
 
-export const Box = styled.div``;
+export const Box = styled.div`
+  margin-top: 1%;
+  margin-bottom: 1%;
+`;
 
 export const UserRealName = styled.h1`
   font-size: 1.8rem;
@@ -157,6 +167,19 @@ export const UserRealName = styled.h1`
 `;
 
 export const UserName = styled.a`
+  font-size: 1.4rem;
+  color: ${({ theme: { c } }) => c.txt_5};
+  transition: color 150ms ease, text-decoration 300ms ease;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+    color: ${({ theme: { c } }) => darken(0.1, c.bg_3)};
+  }
+  @media screen and (min-width: 667px) {
+    font-size: 1.8rem;
+  }
+`;
+export const UserDetails = styled.a`
   font-size: 1.4rem;
   color: ${({ theme: { c } }) => c.txt_5};
   transition: color 150ms ease, text-decoration 300ms ease;
@@ -311,7 +334,7 @@ export const RepoButton = styled.button`
   transition-duration: 150ms;
   font-size: 1.4rem;
   display: block;
-  margin: 0 auto;
+  margin: 10% auto;
   &:hover {
     color: ${({ theme: { c } }) => c.white};
     background: ${({ theme: { c } }) => c.bg_3};
@@ -440,7 +463,7 @@ export const LoadingDot = styled.span`
 
 export const NotFoundContainer = styled.section`
   display: flex;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   flex-wrap: wrap;
   margin-top: 4.8rem;
   gap: 3.6rem;
@@ -485,48 +508,57 @@ export const NotFoundText = styled.p`
 `;
 
 export const StyledPaginateContainer = styled.div`
-.pagination {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  list-style: none;
-  margin-top: 2.5em;
-  color: ${({ theme: { c } }) => c.txt_1};
-}
+  .pagination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+    margin-top: 2.5em;
+    color: ${({ theme: { c } }) => c.txt_1};
+  }
 
-.pagination__page,
-.pagination__link,
-.page-break {
-  display: inline-block;
-  padding: 0.6em 0.8em;
-  cursor: pointer;
-}
+  .pagination__page,
+  .pagination__link,
+  .page-break {
+    display: inline-block;
+    padding: 0.6em 0.8em;
+    cursor: pointer;
+  }
 
-.pagination__page:hover,
-.pagination__page:focus,
-.pagination__link:hover,
-.pagination__link:focus,
-.page-break:hover .page-break:focus {
-  color: #FFFFFF;
-}
+  .pagination__page:hover,
+  .pagination__page:focus,
+  .pagination__link:hover,
+  .pagination__link:focus,
+  .page-break:hover .page-break:focus {
+    color: #ffffff;
+  }
 
-.pagination__link--active {
-  background: #3f1c69;
-}
+  .pagination__link--active {
+    background: #3f1c69;
+  }
 
-.pagination__link--disabled {
-  color: #848383;
-}
+  .pagination__link--disabled {
+    color: #848383;
+  }
 `;
-
 
 export const Profile = styled.div`
   text-align: center;
   max-width:200px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   padding:20px;
+  &:hover {
+    cursor: pointer;
+  }
+  &:hover ${OnHover} {
+    display: block;
+  }
+  @media screen and (max-width: 600px) {
+    max-width: 100%;
+    margin-top: 5%;
+  }
 };
-`
+`;
 export const ProfileImage = styled.div`
   text-align: center;
   width: 150px;
@@ -534,8 +566,8 @@ export const ProfileImage = styled.div`
   object-fit: cover;
   margin: 0 auto 20px auto;
   display: block;
-}`
+}`;
 export const ProfileName = styled.div`
  font-size: 1.2em;
  font-weight: bold;
-}`
+}`;
