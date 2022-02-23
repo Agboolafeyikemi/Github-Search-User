@@ -8,10 +8,7 @@ import { Main, StyledPaginateContainer } from "@Styles/main";
 import GitSearch from "@Components/GitSearch";
 import Loading from "@Components/Loading";
 import GitUserBoard from "@Components/GitUserBoard";
-import UserNotFound from "@Components/UserNotFound";
-
-// UTILS
-import { getUserData } from "@Utils/api";
+import UsersNotFound from "@Components/UsersNotFound";
 
 const GitMain = () => {
   // Set state variable (userInput) to store user search form input value
@@ -55,7 +52,7 @@ const GitMain = () => {
         throw new Error("Something went wrong while processing this request");
       })
       .then((data) => {
-        console.log(data, 'fextedData')
+        console.log(data, "fextedData");
         // Update userSearchResults state with user search results
         setUserSearchResults(data);
         // Calculate total pages of results and set pageCount
@@ -123,7 +120,13 @@ const GitMain = () => {
       currentPageRef.current = currentPage;
     }
   }, [currentPage, userInput]);
-  console.log("userSearchResults \n\n:>> ", userSearchResults);
+  console.log(
+    "userSearchResults.items.length :>> ",
+    isLoading,
+    userSearchResults &&
+      userSearchResults.items &&
+      userSearchResults.items.length
+  );
   return (
     <Main>
       <GitSearch
@@ -131,29 +134,34 @@ const GitMain = () => {
         value={userInput}
         onSubmit={handleSubmit}
       />
+      {userSearchResults &&
+        userSearchResults.items &&
+        userSearchResults.items.length === 0 && <UsersNotFound />}
+      {error && <UsersNotFound />}
       {!userSearchResults && isLoading && <Loading />}
-      {isQuery && <GitUserBoard users={userSearchResults.items} />}
-    
-      {error && <UserNotFound error={error} />}
+      {isQuery && userSearchResults && userSearchResults.items && (
+        <GitUserBoard error={error} users={userSearchResults.items} />
+      )}
+
       {/* Only render ReactPaginate if data is loaded and pageCount is more than 1 */}
       {isLoaded && pageCount > 1 && (
         <StyledPaginateContainer>
-        <ReactPaginate
-          previousLabel={"Previous"}
-          nextLabel={"Next"}
-          breakLabel={"..."}
-          pageCount={pageCount}
-          onPageChange={handlePageClick}
-          marginPagesDisplayed={2}
-          pageRangeDisplayed={2}
-          containerClassName={"pagination"}
-          pageLinkClassName={"pagination__page"}
-          previousLinkClassName={"pagination__link"}
-          nextLinkClassName={"pagination__link"}
-          breakClassName={"page-break"}
-          disabledClassName={"pagination__link--disabled"}
-          activeClassName={"pagination__link--active"}
-        />
+          <ReactPaginate
+            previousLabel={"Previous"}
+            nextLabel={"Next"}
+            breakLabel={"..."}
+            pageCount={pageCount}
+            onPageChange={handlePageClick}
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={2}
+            containerClassName={"pagination"}
+            pageLinkClassName={"pagination__page"}
+            previousLinkClassName={"pagination__link"}
+            nextLinkClassName={"pagination__link"}
+            breakClassName={"page-break"}
+            disabledClassName={"pagination__link--disabled"}
+            activeClassName={"pagination__link--active"}
+          />
         </StyledPaginateContainer>
       )}
     </Main>

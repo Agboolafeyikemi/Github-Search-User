@@ -11,18 +11,18 @@ import {
   NotFoundText,
 } from "@Styles/main";
 
-const UserNotFound = ({ error }) => {
+const UsersNotFound = ({ error }) => {
   return (
     <NotFoundContainer>
       <NotFoundPic src={octocat} alt="GitHub mascot dressed like Wally" />
       <NotFoundWrapper>
         <NotFoundText>
           <span>Oooh no!</span>
-          <span>{error}</span>
+          <span>User does not exit</span>
         </NotFoundText>
       </NotFoundWrapper>
     </NotFoundContainer>
   );
 };
 
-export default UserNotFound;
+export default UsersNotFound;

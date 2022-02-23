@@ -17,9 +17,6 @@ import {
   Wrapper,
 } from "@Styles/main";
 
-// UTILS
-import { checkUsername } from "@Utils/aux";
-
 const GitSearch = ({ onChange, value, onSubmit }) => {
   return (
     <>
@@ -37,15 +34,6 @@ const GitSearch = ({ onChange, value, onSubmit }) => {
           <SearchButton>Search</SearchButton>
         </SearchForm>
       </SearchContainer>
-      {/* {showError && (
-        <SearchErrorMsg>
-          Please enter a{" "}
-          <SearchErrorLink href={usernameRules} target="_blank">
-            valid username
-          </SearchErrorLink>
-          .
-        </SearchErrorMsg>
-      )} */}
     </>
   );
 };
